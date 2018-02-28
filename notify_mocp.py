@@ -14,6 +14,7 @@ album = commands.getoutput("mocp -Q %album")
 #Variables redimensionado
 width = 100
 height = 100
+
 #Opteniendo path coverart
 fil = commands.getoutput("mocp -Q %file")
 
