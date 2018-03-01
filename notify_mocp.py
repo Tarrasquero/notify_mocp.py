@@ -31,9 +31,10 @@ lstDir = os.walk(path)
 for root, dirs, files in lstDir:
     for fichero in files:
         (nombreFichero, extension) = os.path.splitext(fichero)
-        if(extension == ".jpg" or extension == ".png" or extension == ".jpeg"):
+        if (extension == ".jpg" or extension == ".png" or extension == ".jpeg"):
             imagen = '{0}{1}{2}'.format(path, nombreFichero, extension)
-            im1 = Image.open(imagen)
-            img = im1.resize((width, height), Image.ANTIALIAS)
-            img.save(path + nombreFichero + extension)
+            I = Image.open(imagen)
+            if (I.size != "(100, 100)"):
+                img = I.resize((width, height), Image.ANTIALIAS)
+                img.save(path + nombreFichero + extension)
             subprocess.call(['notify-send', "--icon=%s" % (imagen), artista + ':' '\n' + cancion + '\n' + album])
