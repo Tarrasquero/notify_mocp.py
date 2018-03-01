@@ -6,17 +6,17 @@ import sys
 import commands
 import os
 import Image
-# Opteniendo informacion artista album y titulo
-artista = commands.getoutput("mocp -Q %artist")
-cancion = commands.getoutput("mocp -Q %song")
-album = commands.getoutput("mocp -Q %album")
+# Opteniendo informacion artista titulo y album
+artista = sys.argv[1]
+cancion = sys.argv[2]
+album = sys.argv[3]
 
 # Variables redimensionado
 width = 100
 height = 100
 
 # Opteniendo path coverart
-fil = commands.getoutput("mocp -Q %file")
+fil = sys.argv[4]
 
 # Recortando path
 path = fil.rfind('/')
