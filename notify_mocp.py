@@ -34,7 +34,7 @@ for root, dirs, files in lstDir:
         if (extension == ".jpg" or extension == ".png" or extension == ".jpeg"):
             imagen = '{0}{1}{2}'.format(path, nombreFichero, extension)
             I = Image.open(imagen)
-            if (I.size != "(100, 100)"):
+            if (I.size != (100, 100)):
                 img = I.resize((width, height), Image.ANTIALIAS)
                 img.save(path + nombreFichero + extension)
             subprocess.call(['notify-send', "--icon=%s" % (imagen), artista + ':' '\n' + cancion + '\n' + album])
