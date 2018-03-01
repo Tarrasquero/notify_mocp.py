@@ -2,7 +2,6 @@
 # -*- coding: UTF-8 -*-
 
 import subprocess
-import sys
 import commands
 import os
 import Image
