@@ -6,27 +6,27 @@ import sys
 import commands
 import os
 import Image
-#Opteniendo informacion artista album y titulo
+# Opteniendo informacion artista album y titulo
 artista = commands.getoutput("mocp -Q %artist")
 cancion = commands.getoutput("mocp -Q %song")
 album = commands.getoutput("mocp -Q %album")
 
-#Variables redimensionado
+# Variables redimensionado
 width = 100
 height = 100
 
-#Opteniendo path coverart
+# Opteniendo path coverart
 fil = commands.getoutput("mocp -Q %file")
 
-#Recortando path
+# Recortando path
 path = fil.rfind('/')
 if path != -1:
     path = fil[:path+1] 
 
-#Lista con todos los ficheros del directorio:
+# Lista con todos los ficheros del directorio:
 lstDir = os.walk(path)
  
-#Crea una lista de los ficheros jpg/png/jpeg que existen en el directorio y los incluye a la lista.
+# Crea una lista de los ficheros jpg/png/jpeg que existen en el directorio y los incluye a la lista.
 
 for root, dirs, files in lstDir:
     for fichero in files:
