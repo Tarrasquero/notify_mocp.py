@@ -1,8 +1,6 @@
 #!/usr/bin/env python
 # -*- coding: UTF-8 -*-
 import notify2
-import subprocess
-import commands
 import sys
 import os
 import Image
