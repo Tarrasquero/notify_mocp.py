@@ -3,7 +3,8 @@
 
 import subprocess
 import commands
-import sys,os
+import sys
+import os
 import Image
 # Opteniendo informacion artista titulo y album
 artista = sys.argv[1]
