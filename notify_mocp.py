@@ -6,6 +6,7 @@ import commands
 import sys
 import os
 import Image
+notify2.init("mocp")
 # Opteniendo informacion artista titulo y album
 artista = sys.argv[1]
 cancion = sys.argv[2]
