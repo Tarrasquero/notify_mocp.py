@@ -37,4 +37,5 @@ for root, dirs, files in lstDir:
             if (I.size != (100, 100)):
                 img = I.resize((width, height), Image.ANTIALIAS)
                 img.save(path + nombreFichero + extension)
-            subprocess.call(['notify-send', "--icon=%s" % (imagen), artista + ':' '\n' + cancion + '\n' + album])
+            n = notify2.Notification('Artista' + ':  ' + artista , 'Cancion' + ':  ' + cancion + '\n' + 'Album' ':  ' + album, icon)
+            n.show()
