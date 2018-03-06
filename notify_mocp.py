@@ -36,5 +36,6 @@ for root, dirs, files in lstDir:
             if (I.size != (100, 100)):
                 img = I.resize((width, height), Image.ANTIALIAS)
                 img.save(path + nombreFichero + extension)
-            n = notify2.Notification('Artista' + ':  ' + artista , 'Cancion' + ':  ' + cancion + '\n' + 'Album' + ':  ' + album, imagen)
+            text = ("<b>Cancion:  </b>" + "<i>%s</i>" % (cancion) + '\n' + "<b>Album:  </b>" + "<i>%s</i>" % (album))
+            n = notify2.Notification("Artista:  %s" % (artista), text, imagen)
             n.show()
