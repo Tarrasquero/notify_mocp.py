@@ -4,14 +4,10 @@
 
 
 
-## Dependencias:
-- `libnotify-bin`
-
 ## Novedades:
 - `Redimensionado` de imagenes a 100x100
 
 ## Configuración para notificación de mocp:
-- `sudo apt-get install libnotify-bin`
 - Extraer `/usr/share/doc/moc/example/config.example.gz` en `~/.moc` con el nombre `config`.
 - Mover scripts: `notify_mocp.py` a `~/.moc/scripts`.
 `mkdir $HOME/.moc/scripts ; mv notify_mocp.py $HOME/.moc/scripts`
