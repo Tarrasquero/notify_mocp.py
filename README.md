@@ -1,5 +1,8 @@
 # Mocp-Notify.py
 
+![Mocp_notify en acción](https://github.com/Tarrasquero/notify_mocp.py/blob/master/Arreglo.png)
+
+
 ![Mocp_notify en acción](https://github.com/Tarrasquero/notify_mocp.py/blob/master/Screenshot-py.png)
 
 
