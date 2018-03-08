@@ -13,7 +13,7 @@
 - Mover scripts: `notify_mocp.py` a `~/.moc/scripts`.
 `mkdir $HOME/.moc/scripts ; mv notify_mocp.py $HOME/.moc/scripts`
 - Otorgar permisos de ejecución:  `chmod +x notify_mocp.py`
-- Buscar la linea: `#OnSongChange=` que debería quedar parecida a esta: `OnSongChange= "$HOME/scripts/notify_mocp.py %a %t %r %f"` 
+- Buscar la linea: `#OnSongChange=` que debería quedar parecida a esta: `OnSongChange= "$HOME/.moc/scripts/notify_mocp.py %a %t %r %f"` 
 
 ## Bugs:
 - El directorio del album debería contener `al menos una imagen y solo una para mostrar en la notificacion`. 
