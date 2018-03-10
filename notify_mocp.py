@@ -11,6 +11,22 @@ artista = sys.argv[1]
 cancion = sys.argv[2]
 album = sys.argv[3]
 fil = sys.argv[4]
+if not (artista and cancion and album):
+    filename = os.path.splitext(fil)[0]
+    filename = os.path.basename(filename)
+    artista = filename.rfind('-')
+    if artista != -1:
+        artista = filename[:artista]
+    cancion = filename.find('-')
+    if cancion != -1:
+    	cancion = filename[cancion:]
+    	cancion = cancion.strip('- ')
+    filename = os.path.splitext(fil)[0]
+    filename = os.path.dirname(filename)
+    album = filename.rfind('/')
+    if album != -1:
+    	album = filename[album:]
+    	album = album.strip('/')
 n = None    
 try:
     n = load(open(file_dump, mode="rb"))
