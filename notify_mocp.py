@@ -5,7 +5,7 @@ import sys
 import os
 from cPickle import dump, load
 notify2.init("mocp")
-# Opteniendo informacion artista titulo y album
+
 file_dump = '/tmp/pymocp.id'
 artista = sys.argv[1]
 cancion = sys.argv[2]
@@ -16,24 +16,17 @@ try:
     n = load(open(file_dump, mode="rb"))
 except:
     n = notify2.Notification('')
-    
-    
 
-# Variables redimensionado
 width = 100
 height = 100
 
-# Recortando path
 path = fil.rfind('/')
 if path != -1:
     path = fil[:path+1] 
     import Image
     import cgi
-# Lista con todos los ficheros del directorio:
 lstDir = os.walk(path)
  
-# Crea una lista de los ficheros jpg/png/jpeg que existen en el directorio y los incluye a la lista.
-
 for root, dirs, files in lstDir:
     for fichero in files:
         (nombreFichero, extension) = os.path.splitext(fichero)
