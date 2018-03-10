@@ -6,6 +6,7 @@
 
 
 ## Novedades:
+- `Reemplazo` de la notificación.
 - `Redimensionado` de imagenes a 100x100
 
 ## Configuración para notificación de mocp:
