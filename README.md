@@ -1,6 +1,7 @@
 # Mocp-Notify.py
 
-![Mocp_notify en acción](https://youtu.be/x6CiPKTay8o)
+
+[![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/x6CiPKTay8o/0.jpg)](https://www.youtube.com/watch?v=x6CiPKTay8o)
 
 
 
