@@ -3,26 +3,32 @@
 import notify2
 import sys
 import os
-import Image
-import cgi
+from cPickle import dump, load
 notify2.init("mocp")
 # Opteniendo informacion artista titulo y album
+file_dump = '/tmp/pymocp.id'
 artista = sys.argv[1]
 cancion = sys.argv[2]
 album = sys.argv[3]
+fil = sys.argv[4]
+n = None    
+try:
+    n = load(open(file_dump, mode="rb"))
+except:
+    n = notify2.Notification('')
+    
+    
 
 # Variables redimensionado
 width = 100
 height = 100
 
-# Opteniendo path coverart
-fil = sys.argv[4]
-
 # Recortando path
 path = fil.rfind('/')
 if path != -1:
     path = fil[:path+1] 
-
+    import Image
+    import cgi
 # Lista con todos los ficheros del directorio:
 lstDir = os.walk(path)
  
@@ -39,6 +45,7 @@ for root, dirs, files in lstDir:
                 img.save(path + nombreFichero + extension)
             text = ("<b>Artista:  </b>" + "<b>%s</b>" % cgi.escape(artista) + '\n' + "<b>Cancion:  </b>" + "<i>%s</i>" % 
                     cgi.escape(cancion) + '\n' + "<b>Album:  </b>" + "<i>%s</i>" % cgi.escape(album))
-            sumario = ('')
-            n = notify2.Notification(sumario, text, imagen)
+            sumario = ('')            
+            n.update(sumario, text, imagen)
             n.show()
+            n = dump(n, open(file_dump, mode='wb'))
