@@ -21,3 +21,4 @@
 
 ## Bugs:
 - El directorio del album debería contener `al menos una imagen y solo una para mostrar en la notificacion`. 
+- `Advertencia` las imagenes en el directorio en curso son redimensionadas a 100 x 100.
