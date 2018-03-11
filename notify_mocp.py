@@ -51,10 +51,12 @@ for root, dirs, files in lstDir:
             I = Image.open(imagen)
             if (I.size != (100, 100)):
                 img = I.resize((width, height), Image.ANTIALIAS)
+                nombreFichero = (nombreFichero + '.Thumbnail')
                 img.save(path + nombreFichero + extension)
-            text = ("<b>Artista:  </b>" + "<b>%s</b>" % cgi.escape(artista) + '\n' + "<b>Cancion:  </b>" + "<i>%s</i>" % 
-                    cgi.escape(cancion) + '\n' + "<b>Album:  </b>" + "<i>%s</i>" % cgi.escape(album))
-            sumario = ('')            
-            n.update(sumario, text, imagen)
-            n.show()
-            n = dump(n, open(file_dump, mode='wb'))
+                imagen = '{0}{1}{2}'.format(path, nombreFichero, extension)
+                text = ("<b>Artista:  </b>" + "<b>%s</b>" % cgi.escape(artista) + '\n' + "<b>Cancion:  </b>" + "<i>%s</i>" % 
+                        cgi.escape(cancion) + '\n' + "<b>Album:  </b>" + "<i>%s</i>" % cgi.escape(album))
+                sumario = ('')            
+                n.update(sumario, text, imagen)
+                n.show()
+                n = dump(n, open(file_dump, mode='wb'))
