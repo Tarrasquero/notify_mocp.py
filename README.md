@@ -1,9 +1,11 @@
-# Mocp-Notify.py
+# Mocp-Notify.py python 2.7
 
 
 [![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/x6CiPKTay8o/0.jpg)](https://www.youtube.com/watch?v=x6CiPKTay8o)
 
 
+## Dependencias:
+- python-notify2
 
 
 ## Novedades:
