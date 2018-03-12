@@ -10,7 +10,7 @@
 
 ## Novedades:
 - `Reemplazo` de la notificación.
-- `Redimensionado` de imagenes a 100x100
+- `Redimensionado` de imagenes a 100x100 a copia en miniatura.
 
 ## Configuración para notificación de mocp:
 - Extraer `/usr/share/doc/moc/example/config.example.gz` en `~/.moc` con el nombre `config`.
