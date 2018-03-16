@@ -1,16 +1,20 @@
 #!/usr/bin/env python
 # -*- coding: UTF-8 -*-
+import dowload_img
 import notify2
 import sys
 import os
+import commands
 from cPickle import dump, load
 notify2.init("mocp")
 
 file_dump = '/tmp/pymocp.id'
-artista = sys.argv[1]
-cancion = sys.argv[2]
-album = sys.argv[3]
-fil = sys.argv[4]
+
+artista = commands.getoutput("mocp -Q %artist")  # sys.argv[1]
+cancion = commands.getoutput("mocp -Q %song")  #  sys.argv[2]
+album = commands.getoutput("mocp -Q %album")  # sys.argv[3]
+fil = commands.getoutput("mocp -Q %file")  # sys.argv[4]
+
 if not (artista and cancion and album):
     filename = os.path.splitext(fil)[0]
     filename = os.path.basename(filename)
@@ -42,13 +46,15 @@ if path != -1:
     import Image
     import cgi
 lstDir = os.walk(path)
- 
+
 for root, dirs, files in lstDir:
     for fichero in files:
         (nombreFichero, extension) = os.path.splitext(fichero)
-        if (extension == ".jpg" or extension == ".png" or extension == ".jpeg"):
-            imagen = '{0}{1}{2}'.format(path, nombreFichero, extension)
+       	if (extension == ".jpg" or extension == ".png" or extension == ".jpeg"):
+       	    imagen = '{0}{1}{2}'.format(path, nombreFichero, extension)
             I = Image.open(imagen)
+            if (I==0):
+                dowload_img.main()
             if (I.size != (100, 100)):
                 img = I.resize((width, height), Image.ANTIALIAS)
                 nombreFichero = (nombreFichero + '.Thumbnail')
