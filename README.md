@@ -21,4 +21,4 @@
 - Buscar la linea: `#OnSongChange=` que debería quedar parecida a esta: `OnSongChange= "$HOME/.moc/scripts/notify_mocp.py %a %t %r %f"` 
 
 ## Bugs:
-~~- El directorio del album debería contener `al menos una imagen y solo una para mostrar en la notificacion`. ~~
+~~- El directorio del album debería contener `al menos una imagen y solo una para mostrar en la notificacion`.
