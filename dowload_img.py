@@ -21,24 +21,24 @@ def main():
     album = album.replace("(CD 1)", "")
     album = album.replace("(CD 2)", "")
     album = album.replace("?", "_")
-    print album     
+         
     
 
     
     url = ("http://images.coveralia.com/audio/%s/%s%s" % (criterio, album, front))
 
-    print url  
+      
   
     filename = url[url.rfind("/") + 1:]
 
-    print filename
+    
     fil = commands.getoutput("mocp -Q %file")
     _directorio = fil.rfind('/')
     if _directorio != -1:
         _directorio = fil[:_directorio+1]
         urlretrieve(url, _directorio + filename)  # Descargar archivo
-        # urlcleanup()  #  Limpiar cache
+        urlcleanup()  #  Limpiar cache
        
-        print "%s descargado correctamente." % filename
+        
 if __name__ == "__main__":
     main()
