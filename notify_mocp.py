@@ -17,7 +17,7 @@ cancion = commands.getoutput("mocp -Q %song")  #  sys.argv[2]
 album = commands.getoutput("mocp -Q %album")  # sys.argv[3]
 fil = commands.getoutput("mocp -Q %file")  # sys.argv[4]
 img = ''
-mod = dowload_img.main()
+
 text = ("<b>Artista:  </b>" + "<b>%s</b>" % cgi.escape(artista) + '\n' + "<b>Cancion:  </b>" + "<i>%s</i>" % 
         cgi.escape(cancion) + '\n' + "<b>Album:  </b>" + "<i>%s</i>" % cgi.escape(album))
 sumario = ('')
@@ -54,11 +54,14 @@ lstDir = os.walk(path)
 for root, dirs, files in lstDir:
     for fichero in files:
         (nombreFichero, extension) = os.path.splitext(fichero)
-        if (extension != ".jpg" or extension != ".png" or extension != ".jpeg"):
-            mod
         if (extension == ".jpg" or extension == ".png" or extension == ".jpeg"):
             imagen = '{0}{1}{2}'.format(path, nombreFichero, extension)
             I = Image.open(imagen)
+            if not I:
+                dowload_img.main()
+                imagen = '{0}{1}{2}'.format(path, nombreFichero, extension)
+                I = Image.open(imagen)
+
             if (I.size != (100, 100)):
                 img = I.resize((width, height), Image.ANTIALIAS)
                 nombreFichero = (nombreFichero + '.Thumbnail')
@@ -67,8 +70,3 @@ for root, dirs, files in lstDir:
                 n.update(sumario, text, imagen)
                 n.show()
                 n = dump(n, open(file_dump, mode='wb'))
-            if (I==0):
-                n.update(sumario, text, img)
-                n.show()
-                n = dump(n, open(file_dump, mode='wb'))
-                sys.exit()
