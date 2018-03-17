@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 # -*- coding: UTF-8 -*-
-import dowload_img
+
 import notify2
 import sys
 import os
