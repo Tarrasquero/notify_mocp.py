@@ -18,6 +18,6 @@
 `mkdir $HOME/.moc/scripts ; mv notify_mocp.py $HOME/.moc/scripts`
 - Otorgar permisos de ejecución:  `chmod +x notify_mocp.py`
 - Buscar la linea: `#OnSongChange=` que debería quedar parecida a esta: `OnSongChange= "$HOME/.moc/scripts/notify_mocp.py %a %t %r %f"` 
-- Busque la linea `imge = '/home/user/.moc/scripts/icon-moc.png'` y reemplace `user` por el usuario con sesion iniciada.
+- Busque la linea `imge = '/home/user/.moc/scripts/icon-moc.png'` en `notify_mocp.py` y reemplace `user` por el usuario con sesion iniciada.
 ## Bugs:
 - ~~El directorio del album debería contener `al menos una imagen y solo una para mostrar en la notificacion`.~~
