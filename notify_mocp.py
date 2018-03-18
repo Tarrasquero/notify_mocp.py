@@ -7,7 +7,7 @@ import os
 import commands
 import Image
 import cgi
-from cPickle import dump, load, dumps, loads
+from cPickle import dump, load
 notify2.init("mocp")
 
 file_dump = '/tmp/pymocp.id'
@@ -58,10 +58,13 @@ def noimagen():
     cancion = commands.getoutput("mocp -Q %song")  #  sys.argv[2]
     album = commands.getoutput("mocp -Q %album")  # sys.argv[3]
     fil = commands.getoutput("mocp -Q %file")  # sys.argv[4]
-    imge = '/home/user/.moc/scripts/icon-moc.png'
+    imge = '/home/jorge/.moc/scripts/icon-moc.png'
     filename = ("<b>Artista:  </b>" + "<b>%s</b>" % cgi.escape(artista) + '\n' + "<b>Cancion:  </b>" + "<i>%s</i>" % 
                 cgi.escape(cancion) + '\n' + "<b>Album:  </b>" + "<i>%s</i>" % cgi.escape(album))
     sumario = ('')
+    if not (artista and cancion):
+        filename = os.path.splitext(fil)[0]
+        filename = os.path.basename(filename)
     n.update(sumario, filename, imge)
     n.show()
     n = dump(n, open(file_dump, mode='wb'))
