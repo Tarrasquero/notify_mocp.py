@@ -16,7 +16,7 @@ artista = commands.getoutput("mocp -Q %artist")  # sys.argv[1]
 cancion = commands.getoutput("mocp -Q %song")  #  sys.argv[2]
 album = commands.getoutput("mocp -Q %album")  # sys.argv[3]
 fil = commands.getoutput("mocp -Q %file")  # sys.argv[4]
-imge = '/home/jorge/.moc/scripts/icon-moc.png'
+imge = '/home/user/.moc/scripts/icon-moc.png'
 
 filename = ("<b>Artista:  </b>" + "<b>%s</b>" % cgi.escape(artista) + '\n' + "<b>Cancion:  </b>" + "<i>%s</i>" % 
         cgi.escape(cancion) + '\n' + "<b>Album:  </b>" + "<i>%s</i>" % cgi.escape(album))
