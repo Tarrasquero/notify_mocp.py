@@ -48,13 +48,12 @@ if path != -1:
     path = path.replace("CD 6/", "")
 lstDir = os.walk(path)
 def noimagen():
+    file_dump = '/tmp/pymocp.id'
     n = None    
     try:
         n = load(open(file_dump, mode="rb"))
     except:
         n = notify2.Notification('')
-
-    file_dump = '/tmp/pymocp.id'
     artista = commands.getoutput("mocp -Q %artist")  # sys.argv[1]
     cancion = commands.getoutput("mocp -Q %song")  #  sys.argv[2]
     album = commands.getoutput("mocp -Q %album")  # sys.argv[3]
