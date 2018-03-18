@@ -45,7 +45,7 @@ if path != -1:
     path = path.replace("CD 2/", "")
     path = path.replace("CD 3/", "")
     path = path.replace("CD 4/", "")
-    path = path.replace("CD 6/", "")
+    path = path.replace("CD 5/", "")
 lstDir = os.walk(path)
 def noimagen():
     file_dump = '/tmp/pymocp.id'
