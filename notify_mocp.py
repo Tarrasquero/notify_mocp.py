@@ -4,7 +4,6 @@ import string
 import notify2
 import sys
 import os
-import commands
 import Image
 import cgi
 from cPickle import dump, load
@@ -12,10 +11,10 @@ notify2.init("mocp")
 
 file_dump = '/tmp/pymocp.id'
 
-artista = commands.getoutput("mocp -Q %artist")  # sys.argv[1]
-cancion = commands.getoutput("mocp -Q %song")  #  sys.argv[2]
-album = commands.getoutput("mocp -Q %album")  # sys.argv[3]
-fil = commands.getoutput("mocp -Q %file")  # sys.argv[4]
+artista = sys.argv[1]
+cancion = sys.argv[2]
+album = sys.argv[3]
+fil = sys.argv[4]
 imge = '/home/user/.moc/scripts/icon-moc.png'
 
 filename = ("<b>Artista:  </b>" + "<b>%s</b>" % cgi.escape(artista) + '\n' + "<b>Cancion:  </b>" + "<i>%s</i>" % 
