@@ -15,7 +15,6 @@ artista = sys.argv[1]
 cancion = sys.argv[2]
 album = sys.argv[3]
 fil = sys.argv[4]
-imge = '/home/user/.moc/scripts/icon-moc.png'
 
 filename = ("<b>Artista:  </b>" + "<b>%s</b>" % cgi.escape(artista) + '\n' + "<b>Cancion:  </b>" + "<i>%s</i>" % 
         cgi.escape(cancion) + '\n' + "<b>Album:  </b>" + "<i>%s</i>" % cgi.escape(album))
