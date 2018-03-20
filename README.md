@@ -8,7 +8,7 @@
 - python-notify2
 
 
-** Novedades:
+``` Novedades:
 - `Reemplazo` de la notificación.
 - `Redimensionado` de imagenes a 100x100 a copia en miniatura.
 
