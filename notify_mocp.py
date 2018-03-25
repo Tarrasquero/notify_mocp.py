@@ -6,6 +6,7 @@ import sys
 import os
 import Image
 import cgi
+import commands
 from cPickle import dump, load
 notify2.init("mocp")
 
