@@ -24,17 +24,20 @@ def notify():
 	    cancion = commands.getoutput('mocp -Q %song')
 	    album = commands.getoutput('mocp -Q %album')
 	    fil = commands.getoutput('mocp -Q %file')
+    if not (artista and cancion and album):
+        filename = os.path.splitext(fil)[0]
+        filename = os.path.basename(filename)
+        f = filename.rfind('-')
+        artista = filename[:f]
+        cancion = filename[f+1:]
+        al = fil.split('/')
+        album = al[4]    
     imge = '/home/jorge/.moc/scripts/icon-moc.png'
-
     filename = ("<b>Artista:  </b>" + "<b>%s</b>" % 
                 cgi.escape(artista) + '\n' + "<b>Cancion:  </b>" + "<i>%s</i>" % 
                 cgi.escape(cancion) + '\n' + "<b>Album:  </b>" + "<i>%s</i>" % 
                 cgi.escape(album))
     sumario = ('')
-    if not (artista and cancion):
-        filename = os.path.splitext(fil)[0]
-        filename = os.path.basename(filename)
-     
     n = None    
     try:
         n = load(open(file_dump, mode="rb"))
@@ -91,13 +94,18 @@ def noimagen():
         cancion = commands.getoutput('mocp -Q %song')
         album = commands.getoutput('mocp -Q %album')
         fil = commands.getoutput('mocp -Q %file') 
+    if not (artista and cancion and album):
+        filename = os.path.splitext(fil)[0]
+        filename = os.path.basename(filename)
+        f = filename.rfind('-')
+        artista = filename[:f]
+        cancion = filename[f+1:]
+        al = fil.split('/')
+        album = al[4]    
     imge = '/home/jorge/.moc/scripts/icon-moc.png'
     filename = ("<b>Artista:  </b>" + "<b>%s</b>" % cgi.escape(artista) + '\n' + "<b>Cancion:  </b>" + "<i>%s</i>" % 
                 cgi.escape(cancion) + '\n' + "<b>Album:  </b>" + "<i>%s</i>" % cgi.escape(album))
     sumario = ('')
-    if not (artista and album):
-        filename = os.path.splitext(fil)[0]
-        filename = os.path.basename(filename)
     n.update(sumario, filename, imge)
     n.show()
     n = dump(n, open(file_dump, mode='wb'))
