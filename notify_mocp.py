@@ -81,10 +81,16 @@ def noimagen():
         n = load(open(file_dump, mode="rb"))
     except:
         n = notify2.Notification('')
-    artista = sys.argv[1]
-    cancion = sys.argv[2]
-    album = sys.argv[3]
-    fil = sys.argv[4]
+    try:
+        artista = sys.argv[1]
+        cancion = sys.argv[2]
+        album = sys.argv[3]
+        fil = sys.argv[4]
+    except IndexError:
+        artista = commands.getoutput('mocp -Q %artist')
+        cancion = commands.getoutput('mocp -Q %song')
+        album = commands.getoutput('mocp -Q %album')
+        fil = commands.getoutput('mocp -Q %file') 
     imge = '/home/jorge/.moc/scripts/icon-moc.png'
     filename = ("<b>Artista:  </b>" + "<b>%s</b>" % cgi.escape(artista) + '\n' + "<b>Cancion:  </b>" + "<i>%s</i>" % 
                 cgi.escape(cancion) + '\n' + "<b>Album:  </b>" + "<i>%s</i>" % cgi.escape(album))
