@@ -20,10 +20,10 @@ def notify():
         album = sys.argv[3]
         fil = sys.argv[4]
     except IndexError:
-	    artista = commands.getoutput('mocp -Q %artist')
-	    cancion = commands.getoutput('mocp -Q %song')
-	    album = commands.getoutput('mocp -Q %album')
-	    fil = commands.getoutput('mocp -Q %file')
+        artista = commands.getoutput('mocp -Q %artist')
+        cancion = commands.getoutput('mocp -Q %song')
+        album = commands.getoutput('mocp -Q %album')
+        fil = commands.getoutput('mocp -Q %file')
     if not (artista and cancion and album):
         filename = os.path.splitext(fil)[0]
         filename = os.path.basename(filename)
