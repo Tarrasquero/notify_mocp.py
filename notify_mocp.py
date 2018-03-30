@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-# -*- coding: UTF-8 -*-
+# -*- coding: utf-8 -*-
 import Image
 import cgi
 import commands
@@ -62,7 +62,10 @@ def notify():
             (nombreFichero, extension) = os.path.splitext(fichero)
             if extension in ig:
                 _imagen = '{0}{1}{2}'.format(path, nombreFichero, extension)
-                _I = Image.open(_imagen)
+                try:
+                    _I = Image.open(_imagen)
+                except IOError:
+                    noimagen()
                 if (_I.size != (100, 100)):
                     img = _I.resize((width, height), Image.ANTIALIAS)
                     nombreFichero = (nombreFichero + '.Thumbnail')
