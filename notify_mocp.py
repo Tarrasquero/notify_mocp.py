@@ -11,7 +11,7 @@ import cgi
 import re
 from cPickle import dump, load
 notify2.init("mocp")
-
+__autor__ = "Tarrasquero"
 def notify():
     file_dump = '/tmp/pymocp.id'
     try:
@@ -101,8 +101,7 @@ def noimagen():
         cancion = filename[f+1:]
         al = fil.split('/')
         album = al[4] 
-    user = os.environ['USER']
-    imge = '/home/%s/.moc/scripts/icon-moc.png' % (user)
+    imge = os.path.abspath('icon-moc.png')
     filename = ("<b>Artista:  </b>" + "<b>%s</b>" % cgi.escape(artista) + '\n' + "<b>Cancion:  </b>" + "<i>%s</i>" % 
                 cgi.escape(cancion) + '\n' + "<b>Album:  </b>" + "<i>%s</i>" % cgi.escape(album))
     sumario = ('')
