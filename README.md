@@ -5,7 +5,7 @@
 
 
 ## Dependencias:
-- python-notify2
+- Instale dependencias: `sudo pip install --upgrade -r requeriments.txt`
 
 
 ## Novedades:
