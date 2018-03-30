@@ -48,16 +48,8 @@ def notify():
     path = fil.rfind('/')
     if path != -1:
         path = fil[:path+1]
-        path = path.replace("CD1/", "")
-        path = path.replace("CD2/", "")
-        path = path.replace("CD3/", "")
-        path = path.replace("CD4/", "")
-        path = path.replace("CD5/", "")
-        path = path.replace("CD 1/", "")
-        path = path.replace("CD 2/", "")
-        path = path.replace("CD 3/", "")
-        path = path.replace("CD 4/", "")
-        path = path.replace("CD 5/", "")
+        path = re.sub(r'CD[\d*]/', '', path)
+        path = re.sub(r'CD [\d*]/', '', path)
     lstDir = os.walk(path)
     for root, dirs, files in lstDir:
         for fichero in files:
