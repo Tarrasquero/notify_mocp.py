@@ -44,7 +44,7 @@ def notify():
     n = None
     try:
         n = load(open(file_dump, mode="rb"))
-    except EOFError:
+    except IOError:
         n = notify2.Notification('')
 
     width = 100
@@ -80,7 +80,7 @@ def noimagen():
     n = None
     try:
         n = load(open(file_dump, mode="rb"))
-    except EOFError:
+    except IOError:
         n = notify2.Notification('')
     try:
         artista = sys.argv[1]
