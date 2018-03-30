@@ -1,7 +1,5 @@
 #!/usr/bin/env python
 # -*- coding: UTF-8 -*-
-# import string
-# import dowload_img
 import notify2
 import sys
 import os
@@ -9,7 +7,8 @@ import commands
 import Image
 import cgi
 import re
-from cPickle import dump, load
+from cPickle import dump
+from cPickle import load
 notify2.init("mocp")
 __autor__ = "Tarrasquero"
 def notify():
