@@ -100,8 +100,9 @@ def noimagen():
         artista = filename[:f]
         cancion = filename[f+1:]
         al = fil.split('/')
-        album = al[4]    
-    imge = '/home/jorge/.moc/scripts/icon-moc.png'
+        album = al[4] 
+    user = os.environ['USER']
+    imge = '/home/%s/.moc/scripts/icon-moc.png' % (user)
     filename = ("<b>Artista:  </b>" + "<b>%s</b>" % cgi.escape(artista) + '\n' + "<b>Cancion:  </b>" + "<i>%s</i>" % 
                 cgi.escape(cancion) + '\n' + "<b>Album:  </b>" + "<i>%s</i>" % cgi.escape(album))
     sumario = ('')
