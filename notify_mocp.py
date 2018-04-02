@@ -103,7 +103,7 @@ def noimagen():
         cancion = filename[f + 1:]
         al = fil.split('/')
         album = al[4]
-    imge = os.path.abspath('icon-moc.png')
+    imge = os.path.abspath(os.path.join(__file__, os.pardir, 'icon-moc.png'))
     filename = ("<b>Artista:  </b>" + "<b>%s</b>" %
                 cgi.escape(artista) + '\n' +
                 "<b>Cancion:  </b>" + "<i>%s</i>" %
