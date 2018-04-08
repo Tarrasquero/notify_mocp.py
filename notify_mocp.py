@@ -14,108 +14,78 @@ notify2.init("mocp")
 __autor__ = "Jorge"
 
 
-def notify():
-    file_dump = '/tmp/pymocp.id'
-    try:
-        artista = sys.argv[1]
-        cancion = sys.argv[2]
-        album = sys.argv[3]
-        fil = sys.argv[4]
-    except IndexError:
-        artista = commands.getoutput('mocp -Q %artist')
-        cancion = commands.getoutput('mocp -Q %song')
-        album = commands.getoutput('mocp -Q %album')
-        fil = commands.getoutput('mocp -Q %file')
-    if not (artista and cancion and album):
-        filename = os.path.splitext(fil)[0]
-        filename = os.path.basename(filename)
-        f = filename.rfind('-')
-        artista = filename[:f]
-        cancion = filename[f + 1:]
-        al = fil.split('/')
-        album = al[4]
-    filename = ("<b>Artista:  </b>" + "<b>%s</b>" %
-                cgi.escape(artista) + '\n' +
-                "<b>Cancion:  </b>" + "<i>%s</i>" %
-                cgi.escape(cancion) + '\n' +
-                "<b>Album:  </b>" + "<i>%s</i>" %
-                cgi.escape(album))
-    sumario = ('')
-    n = None
-    try:
-        n = load(open(file_dump, mode="rb"))
-    except IOError:
-        n = notify2.Notification('')
+class Cuerpo():
+    def Load(self):
+        self.file_dump = '/tmp/pymocp.id'
+        self.n = None
+        try:
+            self.n = load(open(self.file_dump, mode="rb"))
+        except IOError:
+            self.n = notify2.Notification('')
 
-    width = 100
-    height = 100
-
-    path = fil.rfind('/')
-    if path != -1:
-        path = fil[:path + 1]
-        path = re.sub(r'CD[\d*]/', '', path)
-        path = re.sub(r'CD [\d*]/', '', path)
-    lstDir = os.walk(path)
-    ig = (".jpg", ".png", ".jpeg")
-    for root, dirs, files in lstDir:
-        for fichero in files:
-            (nombreFichero, extension) = os.path.splitext(fichero)
-            if extension in ig:
-                _imagen = '{0}{1}{2}'.format(path, nombreFichero, extension)
-                try:
-                    _I = Image.open(_imagen)
-                except IOError:
-                    noimagen()
-                if (_I.size != (100, 100)):
-                    img = _I.resize((width, height), Image.ANTIALIAS)
-                    nombreFichero = (nombreFichero + '.Thumbnail')
-                    img.save(path + nombreFichero + extension)
-                    _imagen = '{0}{1}{2}'.format(
-                        path, nombreFichero, extension)
-                    n.update(sumario, filename, _imagen)
-                    n.show()
-                    n = dump(n, open(file_dump, mode='wb'))
-                    sys.exit(0)
+    def Dump(self):
+        self.n.update(self.sumario, self.filename, self.imagen)
+        self.n.show()
+        self.n = dump(self.n, open(self.file_dump, mode='wb'))
 
 
-def noimagen():
-    file_dump = '/tmp/pymocp.id'
-    n = None
-    try:
-        n = load(open(file_dump, mode="rb"))
-    except IOError:
-        n = notify2.Notification('')
-    try:
-        artista = sys.argv[1]
-        cancion = sys.argv[2]
-        album = sys.argv[3]
-        fil = sys.argv[4]
-    except IndexError:
-        artista = commands.getoutput('mocp -Q %artist')
-        cancion = commands.getoutput('mocp -Q %song')
-        album = commands.getoutput('mocp -Q %album')
-        fil = commands.getoutput('mocp -Q %file')
-    if not (artista and cancion and album):
-        filename = os.path.splitext(fil)[0]
-        filename = os.path.basename(filename)
-        f = filename.rfind('-')
-        artista = filename[:f]
-        cancion = filename[f + 1:]
-        al = fil.split('/')
-        album = al[4]
-    imge = os.path.abspath(os.path.join(__file__, os.pardir, 'icon-moc.png'))
-    filename = ("<b>Artista:  </b>" + "<b>%s</b>" %
-                cgi.escape(artista) + '\n' +
-                "<b>Cancion:  </b>" + "<i>%s</i>" %
-                cgi.escape(cancion) + '\n' +
-                "<b>Album:  </b>" + "<i>%s</i>" %
-                cgi.escape(album))
-    sumario = ('')
-    n.update(sumario, filename, imge)
-    n.show()
-    n = dump(n, open(file_dump, mode='wb'))
-    sys.exit(0)
+class Notify(Cuerpo):
+    def Imagen(self):
+        try:
+            self.artista = sys.argv[1]
+            self.cancion = sys.argv[2]
+            self.album = sys.argv[3]
+            self.fil = sys.argv[4]
+        except IndexError:
+            self.artista = commands.getoutput('mocp -Q %artist')
+            self.cancion = commands.getoutput('mocp -Q %song')
+            self.album = commands.getoutput('mocp -Q %album')
+            self.fil = commands.getoutput('mocp -Q %file')
+        if not self.cancion:
+            filename = os.path.splitext(self.fil)[0]
+            filename = os.path.basename(filename)
+            f = filename.rfind('-')
+            self.artista = filename[:f]
+            self.cancion = filename[f + 1:]
+            al = self.fil.split('/')
+            self.album = al[4]
+        self.sumario = ''
+        self.width = 100
+        self.height = 100
+        self.filename = ("<b>Artista:  </b>" + "<b>%s</b>" %
+                         cgi.escape(self.artista) + '\n' +
+                         "<b>Cancion:  </b>" + "<i>%s</i>" %
+                         cgi.escape(self.cancion) + '\n' +
+                         "<b>Album:  </b>" + "<i>%s</i>" %
+                         cgi.escape(self.album))
+        self.ig = (".jpg", ".png", ".jpeg")
+        _path = self.fil.rfind('/')
+        if _path != -1:
+            _path = self.fil[:_path + 1]
+            _path = re.sub(r'CD[\d*]/', '', _path)
+            _path = re.sub(r'CD [\d*]/', '', _path)
+        lstDir = os.walk(_path)
+        for root, dirs, files in lstDir:
+            for fichero in files:
+                (nombreFichero, extension) = os.path.splitext(fichero)
+                if extension in self.ig:
+                    self.imagen = '{0}{1}{2}'.format(
+                                  _path, nombreFichero, extension)
+                    i = Image.open(self.imagen)
+                    if (i.size != (100, 100)):
+                        img = i.resize((self.width,
+                                        self.height), Image.ANTIALIAS)
+                        nombreFichero = (nombreFichero + '.Thumbnail')
+                        img.save(_path + nombreFichero + extension)
+                        self.imagen = '{0}{1}{2}'.format(
+                            _path, nombreFichero, extension)
+                        MiNotify.Dump()
+                        sys.exit(0)
+        self.imagen = os.path.abspath(os.path.join(
+            __file__, os.pardir, 'icon-moc.png'))
 
 
-notify()
-noimagen()
+MiNotify = Notify()
+MiNotify.Load()
+MiNotify.Imagen()
+MiNotify.Dump()
