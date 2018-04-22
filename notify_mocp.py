@@ -1,13 +1,13 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 import Image
-import cgi
-import commands
 import notify2
 import os
-import re
-import sys
 
+from re import escape
+from sys import argv, exit
+from cgi import escape
+from commands getoutput
 from cPickle import dump
 from cPickle import load
 notify2.init("mocp")
@@ -32,15 +32,15 @@ class Cuerpo():
 class Notify(Cuerpo):
     def Imagen(self):
         try:
-            self.artista = sys.argv[1]
-            self.cancion = sys.argv[2]
-            self.album = sys.argv[3]
-            self.fil = sys.argv[4]
+            self.artista = argv[1]
+            self.cancion = argv[2]
+            self.album = argv[3]
+            self.fil = argv[4]
         except IndexError:
-            self.artista = commands.getoutput('mocp -Q %artist')
-            self.cancion = commands.getoutput('mocp -Q %song')
-            self.album = commands.getoutput('mocp -Q %album')
-            self.fil = commands.getoutput('mocp -Q %file')
+            self.artista = getoutput('mocp -Q %artist')
+            self.cancion = getoutput('mocp -Q %song')
+            self.album = getoutput('mocp -Q %album')
+            self.fil = getoutput('mocp -Q %file')
         if not self.cancion:
             filename = os.path.splitext(self.fil)[0]
             filename = os.path.basename(filename)
@@ -53,17 +53,17 @@ class Notify(Cuerpo):
         self.width = 100
         self.height = 100
         self.filename = ("<b>Artista:  </b>" + "<b>%s</b>" %
-                         cgi.escape(self.artista) + '\n' +
+                         escape(self.artista) + '\n' +
                          "<b>Cancion:  </b>" + "<i>%s</i>" %
-                         cgi.escape(self.cancion) + '\n' +
+                         escape(self.cancion) + '\n' +
                          "<b>Album:  </b>" + "<i>%s</i>" %
-                         cgi.escape(self.album))
+                         escape(self.album))
         self.ig = (".jpg", ".png", ".jpeg")
         _path = self.fil.rfind('/')
         if _path != -1:
             _path = self.fil[:_path + 1]
-            _path = re.sub(r'CD[\d*]/', '', _path)
-            _path = re.sub(r'CD [\d*]/', '', _path)
+            _path = sub(r'CD[\d*]/', '', _path)
+            _path = sub(r'CD [\d*]/', '', _path)
         lstDir = os.walk(_path)
         for root, dirs, files in lstDir:
             for fichero in files:
@@ -80,7 +80,7 @@ class Notify(Cuerpo):
                         self.imagen = '{0}{1}{2}'.format(
                             _path, nombreFichero, extension)
                         MiNotify.Dump()
-                        sys.exit(0)
+                        exit(0)
         self.imagen = os.path.abspath(os.path.join(
             __file__, os.pardir, 'icon-moc.png'))
 
