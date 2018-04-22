@@ -4,7 +4,7 @@ import Image
 import notify2
 import os
 
-from re import escape
+from re import sub
 from sys import argv, exit
 from cgi import escape
 from commands getoutput
