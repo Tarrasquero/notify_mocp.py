@@ -7,7 +7,7 @@ import os
 from re import sub
 from sys import argv, exit
 from cgi import escape
-from commands getoutput
+from commands import getoutput
 from cPickle import dump
 from cPickle import load
 notify2.init("mocp")
