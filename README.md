@@ -15,7 +15,7 @@
 
 ## Configuración para notificación de mocp:
 - Extraer `/usr/share/doc/moc/example/config.example.gz` en `~/.moc` con el nombre `config`.
-- Mover script: `notify_mocp.py` y `icon-moc.png` a `~/.moc/scripts`:
-`mkdir $HOME/.moc/scripts ; mv notify_mocp.py icon-moc.png $HOME/.moc/scripts`
+- Mover script: `notify_mocp.py` con modulo `Mocp.py` y `icon-moc.png` a `~/.moc/scripts`:
+`mkdir $HOME/.moc/scripts ; mv notify_mocp.py Mocp.py icon-moc.png $HOME/.moc/scripts`
 - Otorgar permisos de ejecución:  `chmod +x notify_mocp.py`
-- Buscar la linea: `#OnSongChange=` que debería quedar parecida a esta: `OnSongChange= "$HOME/.moc/scripts/notify_mocp.py %a %t %r %f"` 
+- En el archibo `config` buscar la linea: `#OnSongChange=` que debería quedar parecida a esta: `OnSongChange= "$HOME/.moc/scripts/notify_mocp.py %a %t %r %f"` 
