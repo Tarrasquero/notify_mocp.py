@@ -9,6 +9,7 @@
 
 
 ## Novedades:
+- Agregado `modulo de descarga para carátulas`.
 - `Reemplazo` de la notificación.
 - `Redimensionado` de imagenes a 100x100 a copia en miniatura.
 
