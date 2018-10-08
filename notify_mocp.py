@@ -72,6 +72,7 @@ class Notify(Cuerpo):
         for root, dirs, files in lstDir:
             for fichero in files:
                 (nombreFichero, extension) = os.path.splitext(fichero)
+                cont = False
                 if extension in self.ig:
                     self.imagen = '{0}{1}{2}'.format(
                         _path, nombreFichero, extension)
@@ -83,14 +84,16 @@ class Notify(Cuerpo):
                         img.save(_path + nombreFichero + extension)
                         self.imagen_t = '{0}{1}{2}'.format(
                             _path, nombreFichero, extension)
+                        cont = True
                         MiNotify.Dump()
                         exit(0)
-        if os.stat(self.imagen).st_size <= 0:
-            self.imagen_t = os.path.abspath(os.path.join(
-                __file__, os.pardir, 'icon-moc.png'))
+                elif not cont:
+                    self.imagen_t = os.path.abspath(os.path.join(
+                        __file__, os.pardir, 'icon-moc.png'))
 
 
 MiNotify = Notify()
 MiNotify.Load()
 MiNotify.Imagen()
 MiNotify.Dump()
+
