@@ -4,8 +4,10 @@
 [![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/x6CiPKTay8o/0.jpg)](https://www.youtube.com/watch?v=x6CiPKTay8o)
 
 
-[![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/YOUTUBE_VIDEO_ID_HERE/0.jpg)](https://www.youtube.com/watch?v=Pg2lRTem2O4)
+[![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/Pg2lRTem2O4/0.jpg)](https://www.youtube.com/watchv=Pg2lRTem2O4)
 
+
+https://youtu.be/Pg2lRTem2O4
 
 ## Dependencias:
 - Instale dependencias: `sudo pip install --upgrade -r requeriments.txt`
