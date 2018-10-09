@@ -28,6 +28,7 @@ class Cuerpo():
         self.n.update(self.sumario, self.filename, self.imagen_t)
         self.n.show()
         self.n = dump(self.n, open(self.file_dump, mode='wb'))
+        exit(0)
 
 
 class Notify(Cuerpo):
@@ -63,31 +64,36 @@ class Notify(Cuerpo):
         _path = self.fil.rfind('/')
         if _path != -1:
             _path = self.fil[:_path + 1]
-            _path = sub(r'CD[\d*]/', '', _path)
-            _path = sub(r'CD [\d*]/', '', _path)
-            _path = sub(r'Disc [\d*]/', '', _path)
-            _path = sub(r'Disc[\d*]/', '', _path)
-        lstDir = os.walk(_path)
+            _path = sub(r"CD[\d*]/", "", _path)
+            _path = sub(r"CD [\d*]/", "", _path)
+            _path = sub(r"Disc [\d*]/", "_", _path)
+            _path = sub(r"Disc[\d*]/", "_", _path)
         Mocp.descargar_img(self.artista, self.album, _path)
+        lstDir = os.walk(_path, topdown=False)
         for root, dirs, files in lstDir:
             for fichero in files:
                 (nombreFichero, extension) = os.path.splitext(fichero)
-                cont = False
-                if extension in self.ig:
-                    self.imagen = '{0}{1}{2}'.format(
-                        _path, nombreFichero, extension)
-                    self.i = Image.open(self.imagen)
-                    if (self.i.size > (100, 100)):
-                        img = self.i.resize((self.width,
-                                             self.height), Image.ANTIALIAS)
-                        nombreFichero = (nombreFichero + '.Thumbnail')
-                        img.save(_path + nombreFichero + extension)
-                        self.imagen_t = '{0}{1}{2}'.format(
+                try:
+                    if extension in self.ig:
+                        self.imagen = '{0}{1}{2}'.format(
                             _path, nombreFichero, extension)
-                        cont = True
+                        self.img = Image.open(self.imagen)
+                        if (self.img.size == (100, 100)):
+                            self.img.save(_path + nombreFichero + extension)
+                            self.imagen_t = '{0}{1}{2}'.format(
+                                _path, nombreFichero, extension)
+                        elif (self.img.size > (100, 100)):
+                            self.imagen = '{0}{1}{2}'.format(
+                                _path, nombreFichero, extension)
+                            self.img = Image.open(self.imagen)
+                            nombreFichero = (nombreFichero + '.Thumbnail')
+                            self.img = self.img.resize((
+                                self.width, self.height), Image.ANTIALIAS)
+                            self.img.save(_path + nombreFichero + extension)
+                            self.imagen_t = '{0}{1}{2}'.format(
+                                _path, nombreFichero, extension)
                         MiNotify.Dump()
-                        exit(0)
-                elif not cont:
+                except IOError:
                     self.imagen_t = os.path.abspath(os.path.join(
                         __file__, os.pardir, 'icon-moc.png'))
 
@@ -96,4 +102,3 @@ MiNotify = Notify()
 MiNotify.Load()
 MiNotify.Imagen()
 MiNotify.Dump()
-
