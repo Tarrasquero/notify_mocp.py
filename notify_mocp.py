@@ -25,10 +25,18 @@ class Cuerpo():
             self.n = notify2.Notification('')
 
     def Dump(self):
-        self.n.update(self.sumario, self.filename, self.imagen_t)
-        self.n.show()
-        self.n = dump(self.n, open(self.file_dump, mode='wb'))
-        exit(0)
+        objeto = os.path.abspath(os.path.join(
+            __file__, os.pardir, 'icon-moc.png'))
+        try:
+            self.n.update(self.sumario, self.filename, self.imagen_t)
+            self.n.show()
+            self.n = dump(self.n, open(self.file_dump, mode='wb'))
+            exit(0)
+        except AttributeError:
+            self.n.update(self.sumario, self.filename, objeto)
+            self.n.show()
+            self.n = dump(self.n, open(self.file_dump, mode='wb'))
+            exit(0)
 
 
 class Notify(Cuerpo):
