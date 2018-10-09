@@ -7,7 +7,7 @@
 [![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/Pg2lRTem2O4/0.jpg)](https://www.youtube.com/watch?v=Pg2lRTem2O4)
 
 
-https://youtu.be/Pg2lRTem2O4
+
 
 ## Dependencias:
 - Instale dependencias: `sudo pip install --upgrade -r requeriments.txt`
