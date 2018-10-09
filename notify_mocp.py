@@ -98,7 +98,8 @@ class Notify(Cuerpo):
                         __file__, os.pardir, 'icon-moc.png'))
 
 
-MiNotify = Notify()
-MiNotify.Load()
-MiNotify.Imagen()
-MiNotify.Dump()
+if __name__ == "__main__":
+    MiNotify = Notify()
+    MiNotify.Load()
+    MiNotify.Imagen()
+    MiNotify.Dump()
