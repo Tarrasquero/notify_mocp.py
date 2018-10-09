@@ -22,9 +22,7 @@ def descargar_img(cantante, disco, directorio):
 
     url = "http://images.coveralia.com/audio/%s/" % cantante.lower()[0]
     link = (url + cantante + "-" + disco + "-Frontal.jpg")
-    print(link)
     nombre_local_imagen = (directorio + disco + ".jpg")
-    print(nombre_local_imagen)
     imagen = requests.get(link).content
     with open(nombre_local_imagen, 'wb') as handler:
         handler.write(imagen)
