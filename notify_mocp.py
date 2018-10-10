@@ -74,10 +74,11 @@ class Notify(Cuerpo):
             _path = self.fil[:_path + 1]
             _path = sub(r"CD[\d*]/", "", _path)
             _path = sub(r"CD [\d*]/", "", _path)
-            _path = sub(r"Disc [\d*]/", "_", _path)
-            _path = sub(r"Disc[\d*]/", "_", _path)
+            _path = sub(r"Disc [\d*]/", "", _path)
+            _path = sub(r"Disc[\d*]/", "", _path)
+            print(_path)
         Mocp.descargar_img(self.artista, self.album, _path)
-        lstDir = os.walk(_path, topdown=False)
+        lstDir = os.walk(_path)
         for root, dirs, files in lstDir:
             for fichero in files:
                 (nombreFichero, extension) = os.path.splitext(fichero)
@@ -85,11 +86,13 @@ class Notify(Cuerpo):
                     if extension in self.ig:
                         self.imagen = '{0}{1}{2}'.format(
                             _path, nombreFichero, extension)
+                        print(self.imagen)
                         self.img = Image.open(self.imagen)
                         if (self.img.size == (100, 100)):
-                            self.img.save(_path + nombreFichero + extension)
                             self.imagen_t = '{0}{1}{2}'.format(
                                 _path, nombreFichero, extension)
+                            MiNotify.Dump()
+                            exit(0)
                         elif (self.img.size > (100, 100)):
                             self.imagen = '{0}{1}{2}'.format(
                                 _path, nombreFichero, extension)
@@ -98,12 +101,14 @@ class Notify(Cuerpo):
                             self.img = self.img.resize((
                                 self.width, self.height), Image.ANTIALIAS)
                             self.img.save(_path + nombreFichero + extension)
-                            self.imagen_t = '{0}{1}{2}'.format(
-                                _path, nombreFichero, extension)
-                        MiNotify.Dump()
+                            self.imagen_t = (_path + nombreFichero + extension)
+                            MiNotify.Dump()
+                            exit(0)
                 except IOError:
                     self.imagen_t = os.path.abspath(os.path.join(
                         __file__, os.pardir, 'icon-moc.png'))
+                    MiNotify.Dump()
+                    exit(0)
 
 
 if __name__ == "__main__":
