@@ -54,9 +54,9 @@ class Notify(Cuerpo):
         if not self.cancion:
             filename = os.path.splitext(self.fil)[0]
             filename = os.path.basename(filename)
-            f = filename.rfind('-')
-            self.artista = filename[:f]
-            self.cancion = filename[f + 1:]
+            f = filename.split('-')
+            self.artista = f[0]
+            self.cancion = f[1]
             al = self.fil.split('/')
             self.album = al[4]
         self.sumario = ''
