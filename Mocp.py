@@ -12,6 +12,7 @@ def descargar_img(cantante, disco, directorio):
     cantante = cantante.replace(' ', '_')
     cantante = cantante.replace('.', '_')
     disco = disco.replace(' ', '_')
+    disco = disco.replace('...', '_')
     disco = disco.replace('.', '_')
     disco = disco.replace('?', '_')
     disco = sub(r"_(Disc[\d*])", "", disco)
