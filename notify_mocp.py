@@ -68,7 +68,6 @@ class Notify(Cuerpo):
                          escape(self.cancion) + '\n' +
                          "<b>Album:  </b>" + "<i>%s</i>" %
                          escape(self.album))
-        self.ig = (".jpg", ".png", ".jpeg")
         _path = self.fil.rfind('/')
         if _path != -1:
             _path = self.fil[:_path + 1]
@@ -76,17 +75,15 @@ class Notify(Cuerpo):
             _path = sub(r"CD [\d*]/", "", _path)
             _path = sub(r"Disc [\d*]/", "", _path)
             _path = sub(r"Disc[\d*]/", "", _path)
-            print(_path)
         Mocp.descargar_img(self.artista, self.album, _path)
         lstDir = os.walk(_path)
         for root, dirs, files in lstDir:
             for fichero in files:
                 (nombreFichero, extension) = os.path.splitext(fichero)
                 try:
-                    if extension in self.ig:
+                    if (extension == ".png"):
                         self.imagen = '{0}{1}{2}'.format(
                             _path, nombreFichero, extension)
-                        print(self.imagen)
                         self.img = Image.open(self.imagen)
                         if (self.img.size == (100, 100)):
                             self.imagen_t = '{0}{1}{2}'.format(
