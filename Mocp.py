@@ -1,12 +1,14 @@
+
 #! /usr/bin/env python
 # -*- coding: utf-8 -*-
-
 import requests
 import os
-from re import sub
+import re
+import cv2
 
 
 def descargar_img(cantante, disco, directorio):
+    os.chdir(directorio)
     cantante = cantante.title()
     disco = disco.title()
     cantante = cantante.replace(' ', '_')
@@ -15,18 +17,41 @@ def descargar_img(cantante, disco, directorio):
     disco = disco.replace('...', '_')
     disco = disco.replace('.', '_')
     disco = disco.replace('?', '_')
-    disco = sub(r"_(Disc[\d*])", "", disco)
-    disco = sub(r"_(CD[\d*])", "", disco)
-    disco = sub(r"_(Cd[\d*])", "", disco)
-    disco = sub(r"_(19[\d**])", "", disco)
-    disco = sub(r"_(20[\d**])", "", disco)
-
+    disco = disco.replace('[Ep]', '(Ep)')
+    disco = disco.replace('_#', '_')
+    disco = disco.replace(': ', '_')
+    disco = disco.replace("_(Disc_1)", "")
+    disco = disco.replace("_(Disc_2)", "")
+    disco = re.sub(r"_(Cd[\d*])", "", disco)
+    disco = re.sub(r"_(19[\d**])", "", disco)
+    disco = re.sub(r"_(20[\d**])", "", disco)
+    # disco = re.sub(r"_(Disc_[\d*])", "", disco)
     url = "http://images.coveralia.com/audio/%s/" % cantante.lower()[0]
     link = (url + cantante + "-" + disco + "-Frontal.jpg")
-    nombre_local_imagen = (directorio + disco + ".jpg")
     imagen = requests.get(link).content
-    with open(nombre_local_imagen, 'wb') as handler:
+    nombreli = (directorio + cantante + "-" + disco + "-Frontal.jpg")
+    with open(nombreli, 'wb') as handler:
         handler.write(imagen)
-    if os.stat(nombre_local_imagen).st_size <= 345:
-        os.remove(nombre_local_imagen)
-
+        path = os.walk(directorio)
+        try:
+            for root, dirs, files in path:
+                for fichero in files:
+                    (nombreFichero, extension) = os.path.splitext(fichero)
+                    if (extension == ".jpg"):
+                        img = cv2.imread(nombreFichero + extension)
+                        cv2.imwrite(nombreFichero +
+                                    ".png", img,
+                                    [int(cv2.IMWRITE_PNG_COMPRESSION), 9])
+                        os.remove(nombreFichero + ".jpg")
+                        if os.stat(nombreFichero + ".png").st_size < 345:
+                            os.remove(nombreFichero + ".png")
+                    if (extension == ".jpeg"):
+                        img = cv2.imread(nombreFichero + extension)
+                        cv2.imwrite(nombreFichero +
+                                    ".png", img,
+                                    [int(cv2.IMWRITE_PNG_COMPRESSION), 9])
+                        os.remove(nombreFichero + ".jpeg")
+                    else:
+                        pass
+        except OSError:
+            pass
