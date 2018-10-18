@@ -14,6 +14,7 @@
 
 
 ## Novedades:
+- Conversion a formato `PNG` compatible con `Dunst`.
 - Agregado `modulo de descarga para carátulas`. `BETA`
 - `Reemplazo` de la notificación.
 - `Redimensionado` de imagenes a 100x100 a copia en miniatura.
@@ -24,3 +25,4 @@
 `mkdir $HOME/.moc/scripts ; mv notify_mocp.py icon-moc.png $HOME/.moc/scripts`
 - Otorgar permisos de ejecución:  `chmod +x notify_mocp.py`
 - En el archibo `config` buscar la linea: `#OnSongChange=` que debería quedar parecida a esta: `OnSongChange= "$HOME/.moc/scripts/notify_mocp.py %a %t %r %f"` 
+- Si usas Dunst busca la linea `allow_markup = yes` en `~/.config/dunst/dunstrc`, de esta forma activarás el formateo `html`de la notificación, o no.  
