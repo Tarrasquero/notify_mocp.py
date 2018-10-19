@@ -20,7 +20,7 @@
 - `Redimensionado` de imagenes a 100x100 a copia en miniatura.
 
 ## Configuración para notificación de mocp:
-- Extraer `/usr/share/doc/moc/example/config.example.gz` en `~/.moc` con el nombre `config`.
+- Extraer `/usr/share/doc/moc/examples/config.example.gz` en `~/.moc` con el nombre `config`.
 - Mover script: `notify_mocp.py` con modulo `Mocp.py` y `icon-moc.png` a `~/.moc/scripts`:
 `mkdir $HOME/.moc/scripts ; mv notify_mocp.py icon-moc.png $HOME/.moc/scripts`
 - Otorgar permisos de ejecución:  `chmod +x notify_mocp.py`
