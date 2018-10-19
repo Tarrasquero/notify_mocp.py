@@ -22,7 +22,7 @@
 ## Configuración para notificación de mocp:
 - Extraer `/usr/share/doc/moc/examples/config.example.gz` en `~/.moc` con el nombre `config`.
 - Mover script: `notify_mocp.py` con modulo `Mocp.py` y `icon-moc.png` a `~/.moc/scripts`:
-`mkdir $HOME/.moc/scripts ; mv notify_mocp.py icon-moc.png $HOME/.moc/scripts`
+`mkdir $HOME/.moc/scripts ; mv notify_mocp.py icon-moc.png Mocp.py $HOME/.moc/scripts`
 - Otorgar permisos de ejecución:  `chmod +x notify_mocp.py`
 - En el archibo `config` buscar la linea: `#OnSongChange=` que debería quedar parecida a esta: `OnSongChange= "$HOME/.moc/scripts/notify_mocp.py %a %t %r %f"` 
 - Si usas Dunst, busca la linea `allow_markup = yes` en `~/.config/dunst/dunstrc`, de esta forma activarás el formateo `html`de la notificación, o no.  
