@@ -25,33 +25,39 @@ def descargar_img(cantante, disco, directorio):
     disco = re.sub(r"_(Cd[\d*])", "", disco)
     disco = re.sub(r"_(19[\d**])", "", disco)
     disco = re.sub(r"_(20[\d**])", "", disco)
-    # disco = re.sub(r"_(Disc_[\d*])", "", disco)
-    url = "http://images.coveralia.com/audio/%s/" % cantante.lower()[0]
-    link = (url + cantante + "-" + disco + "-Frontal.jpg")
-    imagen = requests.get(link).content
-    nombreli = (directorio + cantante + "-" + disco + "-Frontal.jpg")
-    with open(nombreli, 'wb') as handler:
-        handler.write(imagen)
-        path = os.walk(directorio)
-        try:
-            for root, dirs, files in path:
-                for fichero in files:
-                    (nombreFichero, extension) = os.path.splitext(fichero)
-                    if (extension == ".jpg"):
-                        img = cv2.imread(nombreFichero + extension)
-                        cv2.imwrite(nombreFichero +
-                                    ".png", img,
-                                    [int(cv2.IMWRITE_PNG_COMPRESSION), 9])
-                        os.remove(nombreFichero + ".jpg")
-                        if os.stat(nombreFichero + ".png").st_size < 345:
-                            os.remove(nombreFichero + ".png")
-                    if (extension == ".jpeg"):
-                        img = cv2.imread(nombreFichero + extension)
-                        cv2.imwrite(nombreFichero +
-                                    ".png", img,
-                                    [int(cv2.IMWRITE_PNG_COMPRESSION), 9])
-                        os.remove(nombreFichero + ".jpeg")
-                    else:
-                        pass
-        except OSError:
-            pass
+    print(cantante, disco)
+    link = ("http://images.coveralia.com/audio/%s/" +
+           cantante + "-" + disco +
+           "-Frontal.jpg") % cantante.lower()[0]
+    #link = (url + cantante + "-" + disco + "-Frontal.jpg")
+    try:
+        imagen = requests.get(link).content
+        nombreli = (directorio + cantante + "-" + disco + "-Frontal.jpg")
+        print(link)
+        with open(nombreli, 'wb') as handler:
+            handler.write(imagen)
+            path = os.walk(directorio)
+            try:
+                for root, dirs, files in path:
+                    for fichero in files:
+                        (nombreFichero, extension) = os.path.splitext(fichero)
+                        if (extension == ".jpg"):
+                            img = cv2.imread(nombreFichero + extension)
+                            cv2.imwrite(nombreFichero +
+                                        ".png", img,
+                                        [int(cv2.IMWRITE_PNG_COMPRESSION), 9])
+                            os.remove(nombreFichero + ".jpg")
+                            if os.stat(nombreFichero + ".png").st_size < 345:
+                                os.remove(nombreFichero + ".png")
+                        if (extension == ".jpeg"):
+                            img = cv2.imread(nombreFichero + extension)
+                            cv2.imwrite(nombreFichero +
+                                        ".png", img,
+                                        [int(cv2.IMWRITE_PNG_COMPRESSION), 9])
+                            os.remove(nombreFichero + ".jpeg")
+                        else:
+                            pass
+            except OSError:
+                pass
+    except requests.exceptions.ConnectionError:
+        pass
