@@ -41,6 +41,11 @@ class Cuerpo():
 
 class Notify(Cuerpo):
     def Imagen(self):
+        play = getoutput('mocp -Q %state')
+        if (play != 'PLAY'):
+            self.datos = "Mocp no está funcionando"
+            self.sumario = "STOP"
+            MiNotify.Dump()
         try:
             self.artista = argv[1]
             self.cancion = argv[2]
