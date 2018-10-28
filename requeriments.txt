@@ -1,4 +1,4 @@
-Image
+PIL
 cgi-tools
 notify2
 requests
