@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 import notify2
 import os
-import Image
+from PIL import Image
 from commands import getoutput
 from sys import argv, exit
 from re import sub
