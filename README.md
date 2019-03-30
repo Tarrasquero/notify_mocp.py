@@ -14,8 +14,9 @@
 
 
 ## Novedades:
+- Paquete instalable `Debian`
 - Conversion a formato `PNG` compatible con `Dunst`.
-- Agregado `modulo de descarga para carátulas`. `BETA`
+- Agregado `modulo de descarga para carátulas` last.fm.
 - `Reemplazo` de la notificación.
 - `Redimensionado` de imagenes a 100x100 a copia en miniatura.
 
@@ -26,3 +27,7 @@
 - Otorgar permisos de ejecución:  `chmod +x notify_mocp.py`
 - En el archibo `config` buscar la linea: `#OnSongChange=` que debería quedar parecida a esta: `OnSongChange= "$HOME/.moc/scripts/notify_mocp.py %a %t %r %f"` 
 - Si usas Dunst, busca la linea `allow_markup = yes` en `~/.config/dunst/dunstrc`, de esta forma activarás el formateo `html`de la notificación, o no.  
+
+## En el supuesto que escojas instalar el paquete:
+- `sudo dpkg -i notify-moc-1.0.deb;sudo apt-get install -f`
+- Ya solo bastaría con editar la línea `OnSongChange= "/usr/bin/moc-notify %a %t %r %f"`
